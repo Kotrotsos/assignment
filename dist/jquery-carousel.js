@@ -11,13 +11,10 @@
 	function Plugin(element, options) {
 		this.element = element;
 
-		// jQuery has an extend method which merges the contents of two or
-		// more objects, storing the result in the first object. The first object
-		// is generally empty as we don't want to alter the default options for
-		// future instances of the plugin
 		this.settings = $.extend({}, defaults, options);
 		this._defaults = defaults;
 		this._name = pluginName;
+
 		this.init();
 	}
 
@@ -26,25 +23,37 @@
 		init: function init() {
 			this.main();
 		},
-		main: function main() {
-			_.templateSettings = {
-				evaluate: /{{([\s\S]+?)}}/g,
-				interpolate: /{{([\s\S]+?)}}/g,
-				escape: /{{-([\s\S]+?)}}/g
-			};
-			// some logic
-			console.log(this.settings.template);
+		render: function render(obj) {
 			var template = $("#" + this.settings.template).html();
-			console.log('x', template);
+
 			var templateFn = _.template(template);
-			console.log('fn, ', templateFn);
-			var templateHTML = templateFn({ 'comment': 'sup', 'commenter': 'me' });
+
+			var templateHTML = templateFn({ 'testionials': obj });
+
 			$(this.element).html(templateHTML);
+		},
+		main: function main() {
+			var self = this;
+			var remoteData = void 0;
+			$.when($.ajax(this.settings.datasource)).then(function (data, textStatus, jqXHR) {
+				remoteData = data.testimonials;
+				self.render(data.testimonials);
+			}).then(function () {
+				var items = $(self.element).find('.c-carousel_item');
+				$.each(items, function (key, item) {
+					$(item).on('click', function () {
+						var selectedId = $(this).attr('id');
+						console.log(selectedId);
+
+						var selectedObj = _.find(remoteData, ['id', selectedId]);
+						console.log(remoteData);
+						console.log(selectedObj);
+					});
+				});
+			});
 		}
 	});
 
-	// A really lightweight plugin wrapper around the constructor,
-	// preventing against multiple instantiations
 	$.fn[pluginName] = function (options) {
 		return this.each(function () {
 			if (!$.data(this, "plugin_" + pluginName)) {

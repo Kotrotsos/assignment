@@ -2,8 +2,30 @@
 
 .c-carousel {
 
+
+  .c-carousel_full {
+    padding: $base-whitespace * 2;
+    background-color: white;
+    margin-bottom: $base-whitespace;
+  }
   .c-carousel_item {
+    display: inline-block;
+    width: 200px;
+    margin: 0 $base-whitespace;
+    padding: $base-whitespace * 2;
+    background-color: white;
+  }
+  .c-carousel_item_thumbnail {
 
   }
-    
+  .c-carousel_item_fullimage {
+
+  }
+  .c-carousel_item_title {
+
+  }
+
+  .c-carousel_item_description {
+
+  }
 }

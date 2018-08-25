@@ -23,17 +23,36 @@
         <h2>Assignment</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et est sit, magni. Quidem nostrum molestias nulla autem atque rerum accusantium nesciunt aut? Ipsum labore, laboriosam exercitationem dicta alias corporis, velit.</p>
 
-        <div id="carousel"
-
-        </div>
+        <div data-carousel></div>
 
       </div>
     </div>
   </div>
 
+
+
   <script id="carousel-template" type="text/x-lodash-template">
     <div class="c-carousel">
-      bla {{ comment }} 
+      <div class="c-carousel_full"><img src="https://placekitten.com/1000/500" alt="testimonial full image" class="c-carousel_item_fullimage u-hidden">
+            <div class="c-carousel_item_title"><strong>hello</strong></div>
+            <div class="c-carousel_item_description">descript</div>
+            <a class="o-button o-button-secondary" href="target">targettext</a></div>
+      <div class="c-carousel_strip">
+
+        <% _.forEach(testionials, function(testimonial) { %>
+          <div id="<%= testimonial.id %>" class="c-carousel_item"><%= testimonial.id %>
+            <img class="c-carousel_item_thumbnail" src="<%= testimonial.thumbnail %>" alt="testimonalimage" />
+
+            <img src="<%= testimonial.fullimage %>" alt="testimonial full image" class="c-carousel_item_fullimage u-hidden" />
+            <div class="c-carousel_item_title"><strong><%= testimonial.title %></strong></div>
+            <div class="c-carousel_item_description"><%= testimonial.description %></div>
+            <a class="o-button o-button-secondary" href="<%= testimonial.target %>"><%= testimonial.targettext %></a>
+
+          </div>
+        <% }) %>
+        <div class="c-carousel_nav-forward"></div>
+        <div class="c-carousel_nav-back"></div>
+      </div>
     </div>
   </script>
 

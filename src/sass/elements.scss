@@ -104,10 +104,13 @@ h4 {
   line-height: 1.5;
 }
 
-.c-button {
+strong {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.o-button {
   display: inline-block;
   position: relative;
-  min-width: 180px;
   max-width: 100%;
   padding: 15px 24px;
   transition: all 0.3s ease;
@@ -127,10 +130,24 @@ h4 {
   line-height: 24px;
   line-height: 1.5rem;
 
-  ,
+
   &:focus,
   &:hover {
     background-color: #e65c00;
+    text-decoration: none;
+  }
+
+
+}
+.o-button-secondary {
+  border-color: #1cb3f4;
+  background-color: #fff;
+  color: #1cb3f4;
+  &:focus,
+  &:hover {
+    border-color: #1cb3f4;
+    background-color: #1cb3f4;
+    color: white;
     text-decoration: none;
   }
 }
