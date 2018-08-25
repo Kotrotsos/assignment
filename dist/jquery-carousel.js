@@ -4,10 +4,8 @@
 
 	"use strict";
 
-	var pluginName = "defaultPluginName",
-	    defaults = {
-		propertyName: "value"
-	};
+	var pluginName = "tntcarousel",
+	    defaults = {};
 
 	// The actual plugin constructor
 	function Plugin(element, options) {
@@ -26,19 +24,22 @@
 	// Avoid Plugin.prototype conflicts
 	$.extend(Plugin.prototype, {
 		init: function init() {
-
-			// Place initialization logic here
-			// You already have access to the DOM element and
-			// the options via the instance, e.g. this.element
-			// and this.settings
-			// you can add more functions like the one below and
-			// call them like the example below
-			this.yourOtherFunction("jQuery Boilerplate");
+			this.main();
 		},
-		yourOtherFunction: function yourOtherFunction(text) {
-
+		main: function main() {
+			_.templateSettings = {
+				evaluate: /{{([\s\S]+?)}}/g,
+				interpolate: /{{([\s\S]+?)}}/g,
+				escape: /{{-([\s\S]+?)}}/g
+			};
 			// some logic
-			$(this.element).text(text);
+			console.log(this.settings.template);
+			var template = $("#" + this.settings.template).html();
+			console.log('x', template);
+			var templateFn = _.template(template);
+			console.log('fn, ', templateFn);
+			var templateHTML = templateFn({ 'comment': 'sup', 'commenter': 'me' });
+			$(this.element).html(templateHTML);
 		}
 	});
 

@@ -35,8 +35,14 @@ gulp.task('watch', function () {
 
     });
 
-    gulp.watch('./src/**/*.js', ['babel']);
+    gulp.watch('./src/**/**/*.js', ['babel', 'copy']);
 });
+
+gulp.task('copy', function () {
+    gulp.src('src/js/vendor/*')
+        .pipe(gulp.dest('./dist/vendor'));
+});
+
 gulp.task('babel', () =>
     gulp.src('src/*.js')
         .pipe(babel({
@@ -45,4 +51,4 @@ gulp.task('babel', () =>
         .pipe(gulp.dest('dist'))
 );
 
-gulp.task('default', ['sass', 'watch', 'browser-sync']);
+gulp.task('default', ['sass', 'babel', 'copy', 'watch', 'browser-sync']);
