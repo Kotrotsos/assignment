@@ -28,7 +28,7 @@
 
 			var templateFn = _.template(template);
 
-			var templateHTML = templateFn({ 'testionials': obj });
+			var templateHTML = templateFn({ 'testimonials': obj });
 
 			$(this.element).html(templateHTML);
 		},
@@ -43,11 +43,7 @@
 				$.each(items, function (key, item) {
 					$(item).on('click', function () {
 						var selectedId = $(this).attr('id');
-						console.log(selectedId);
-
 						var selectedObj = _.find(remoteData, ['id', selectedId]);
-						console.log(remoteData);
-						console.log(selectedObj);
 					});
 				});
 			});
