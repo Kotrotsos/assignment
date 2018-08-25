@@ -24,9 +24,7 @@
 			},
       render: function (obj) {
         let template = $("#" + this.settings.template).html();
-
         let templateFn = _.template(template);
-
         let templateHTML = templateFn({ 'testimonials': obj  });
 
         $( this.element ).html( templateHTML );
@@ -34,18 +32,19 @@
 			main: function(  ) {
         let self = this;
         let remoteData;
+
         $.when( $.ajax( this.settings.datasource ) ).then(function( data, textStatus, jqXHR ) {
           remoteData = data.testimonials;
           self.render(data.testimonials);
-
-
         }).then(function() {
           let items = $( self.element ).find('.c-carousel_item')
+
           $.each(items, (key, item) => {
             $(item).on('click', function () {
               let selectedId = $(this).attr('id');
-              let selectedObj = _.find(remoteData, [ 'id',  selectedId ])
-
+              // Get dom stuff and replace full
+              $( self.element ).find('.c-carousel_full').html( $('#' + selectedId).find('.c-carousel_section').html() );
+              //let selectedObj = _.find(remoteData, [ 'id',  selectedId ])
             });
             });
         });

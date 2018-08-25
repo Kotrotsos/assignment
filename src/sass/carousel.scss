@@ -8,12 +8,29 @@
     background-color: white;
     margin-bottom: $base-whitespace;
   }
+
+  .c-carousel_strip {
+    width: 100%;
+    overflow-x: hidden;
+overflow-y: hidden;
+white-space: nowrap;
+
+
+  }
+
   .c-carousel_item {
     display: inline-block;
-    width: 200px;
-    margin: 0 $base-whitespace;
+    width: 280px;
+    margin: 0 $base-whitespace 0 0;
     padding: $base-whitespace * 2;
     background-color: white;
+
+    &:active {
+      border: solid black 1px;
+    }
+    &-active {
+      border: solid black 1px;
+    }
   }
   .c-carousel_item_thumbnail {
 

@@ -25,9 +25,7 @@
 		},
 		render: function render(obj) {
 			var template = $("#" + this.settings.template).html();
-
 			var templateFn = _.template(template);
-
 			var templateHTML = templateFn({ 'testimonials': obj });
 
 			$(this.element).html(templateHTML);
@@ -35,15 +33,19 @@
 		main: function main() {
 			var self = this;
 			var remoteData = void 0;
+
 			$.when($.ajax(this.settings.datasource)).then(function (data, textStatus, jqXHR) {
 				remoteData = data.testimonials;
 				self.render(data.testimonials);
 			}).then(function () {
 				var items = $(self.element).find('.c-carousel_item');
+
 				$.each(items, function (key, item) {
 					$(item).on('click', function () {
 						var selectedId = $(this).attr('id');
-						var selectedObj = _.find(remoteData, ['id', selectedId]);
+						// Get dom stuff and replace full
+						$(self.element).find('.c-carousel_full').html($('#' + selectedId).find('.c-carousel_section').html());
+						//let selectedObj = _.find(remoteData, [ 'id',  selectedId ])
 					});
 				});
 			});
