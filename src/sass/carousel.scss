@@ -2,21 +2,21 @@
 
 .c-carousel {
 
-  .c-carousel_full {
+  &_full {
     background-color: #fff;
     margin-bottom: $base-whitespace;
     overflow: hidden;
     padding-bottom: $base-whitespace;
   }
 
-  .c-carousel_strip {
+  &_strip {
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
   }
 
-  .c-carousel_item {
+  &_item {
     display: inline-block;
     width: 280px;
     margin: 0 $base-whitespace 0 0;
@@ -30,9 +30,10 @@
     &-active {
       background-color: #e3e3e3;
     }
+    &_description {
+      margin-bottom: $base-whitespace;
+    }
   }
 
-  .c-carousel_item_description {
-    margin-bottom: $base-whitespace;
-  }
+
 }

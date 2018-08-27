@@ -117,11 +117,9 @@
         });
 
         $(document).on('keydown', function (event) {
-
           if (event.originalEvent.code == 'ArrowRight') {
             self.next(self);
           }
-
           if (event.originalEvent.code == 'ArrowLeft') {
             self.previous(self);
           }
