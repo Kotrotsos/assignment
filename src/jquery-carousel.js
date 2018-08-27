@@ -1,6 +1,4 @@
-/* This plugin uses the defacto jQuery plugin structure */
-
-;
+/* This plugin uses the defacto jQuery plugin structure */;
 (function($, window, document, undefined) {
 
   "use strict";
@@ -46,9 +44,7 @@
         /* This fetches the HTML from the selected strip item and copy's it in the full carousel_section
           This way it's easier to get the desired responsive behaviour . */
 
-        $(element)
-          .find('.c-carousel_full')
-          .html( $(firstItemId).find('.c-carousel_section').html() );
+        $(element).find('.c-carousel_full').html($(firstItemId).find('.c-carousel_section').html());
 
         firstItem.addClass('c-carousel_item-active');
 
@@ -58,23 +54,44 @@
       } else {
 
         // Select the item that was chosen through click or tap;
-        $(element)
-          .find('.c-carousel_item')
-          .removeClass('c-carousel_item-active');
+        $(element).find('.c-carousel_item').removeClass('c-carousel_item-active');
         $('#' + selectedId).addClass('c-carousel_item-active');
 
         $(element).find('.c-carousel_full').html($('#' + selectedId).find('.c-carousel_section').html());
+
       }
     },
 
-    next: {
+    next: function(self) {
       /* When possible, go to the next child of the strip element.
          Add class active, replace content of the full image */
+
+      let el = $('.c-carousel_item-active').next('.c-carousel_item');
+
+      if (el.length) {
+        $('.c-carousel_item').removeClass('c-carousel_item-active')
+        el.addClass('c-carousel_item-active');
+
+        // This I should be able to dry up.
+        $(self.element).find('.c-carousel_full').html($($('#' + el.attr('id'))).find('.c-carousel_section').html());
+
+      }
+
     },
 
-    previous: {
+    previous: function(self) {
       /* When possible, go to the previous child of the strip element.
          Add class active, replace content of the full image */
+
+      let el = $('.c-carousel_item-active').prev('.c-carousel_item');
+      if (el.length) {
+        $('.c-carousel_item').removeClass('c-carousel_item-active')
+        el.addClass('c-carousel_item-active');
+
+        // This I should be able to dry up.
+        $(self.element).find('.c-carousel_full').html($($('#' + el.attr('id'))).find('.c-carousel_section').html());
+
+      }
     },
 
     main: function() {
@@ -82,9 +99,9 @@
       let remoteData;
       let datasource;
 
-     /*
+      /*
       Check where the datasource is defined. Either in the options object or on the element itself
-      using data attribute.      
+      using data attribute.
      */
       datasource = this.settings.datasource || $(self.element).attr('data-datasource');
 
@@ -102,14 +119,22 @@
           });
         });
 
-      // Select the first one of the carousel items.
-      self.select(self, null)
+        $(document).on('keydown', function(event) {
+
+          if (event.originalEvent.code == 'ArrowRight') {
+            self.next(self);
+          }
+
+          if (event.originalEvent.code == 'ArrowLeft') {
+            self.previous(self);
+          }
+        });
+
+        // Select the first one of the carousel items.
+        self.select(self, null)
 
       });
-
-    },
-
-
+    }
   });
 
   $.fn[pluginName] = function(options) {

@@ -1,8 +1,6 @@
 "use strict";
 
-/* This plugin uses the defacto jQuery plugin structure */
-
-;
+/* This plugin uses the defacto jQuery plugin structure */;
 (function ($, window, document, undefined) {
 
   "use strict";
@@ -64,14 +62,33 @@
       }
     },
 
-    next: {
+    next: function next(self) {
       /* When possible, go to the next child of the strip element.
          Add class active, replace content of the full image */
+
+      var el = $('.c-carousel_item-active').next('.c-carousel_item');
+
+      if (el.length) {
+        $('.c-carousel_item').removeClass('c-carousel_item-active');
+        el.addClass('c-carousel_item-active');
+
+        // This I should be able to dry up.
+        $(self.element).find('.c-carousel_full').html($($('#' + el.attr('id'))).find('.c-carousel_section').html());
+      }
     },
 
-    previous: {
+    previous: function previous(self) {
       /* When possible, go to the previous child of the strip element.
          Add class active, replace content of the full image */
+
+      var el = $('.c-carousel_item-active').prev('.c-carousel_item');
+      if (el.length) {
+        $('.c-carousel_item').removeClass('c-carousel_item-active');
+        el.addClass('c-carousel_item-active');
+
+        // This I should be able to dry up.
+        $(self.element).find('.c-carousel_full').html($($('#' + el.attr('id'))).find('.c-carousel_section').html());
+      }
     },
 
     main: function main() {
@@ -80,8 +97,8 @@
       var datasource = void 0;
 
       /*
-       Check where the datasource is defined. Either in the options object or on the element itself
-       using data attribute.      
+      Check where the datasource is defined. Either in the options object or on the element itself
+      using data attribute.
       */
       datasource = this.settings.datasource || $(self.element).attr('data-datasource');
 
@@ -99,11 +116,21 @@
           });
         });
 
+        $(document).on('keydown', function (event) {
+
+          if (event.originalEvent.code == 'ArrowRight') {
+            self.next(self);
+          }
+
+          if (event.originalEvent.code == 'ArrowLeft') {
+            self.previous(self);
+          }
+        });
+
         // Select the first one of the carousel items.
         self.select(self, null);
       });
     }
-
   });
 
   $.fn[pluginName] = function (options) {
