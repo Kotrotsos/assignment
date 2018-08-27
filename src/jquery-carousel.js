@@ -62,35 +62,27 @@
       }
     },
 
+    activate: function(el, self) {
+      $('.c-carousel_item').removeClass('c-carousel_item-active')
+      $(el).addClass('c-carousel_item-active');
+
+      // This I should be able to dry up.
+      $(self.element).find('.c-carousel_full').html($($('#' + el.attr('id'))).find('.c-carousel_section').html());
+    },
     next: function(self) {
-      /* When possible, go to the next child of the strip element.
-         Add class active, replace content of the full image */
 
       let el = $('.c-carousel_item-active').next('.c-carousel_item');
 
       if (el.length) {
-        $('.c-carousel_item').removeClass('c-carousel_item-active')
-        el.addClass('c-carousel_item-active');
-
-        // This I should be able to dry up.
-        $(self.element).find('.c-carousel_full').html($($('#' + el.attr('id'))).find('.c-carousel_section').html());
-
+        this.activate(el, self);
       }
-
     },
 
     previous: function(self) {
-      /* When possible, go to the previous child of the strip element.
-         Add class active, replace content of the full image */
 
       let el = $('.c-carousel_item-active').prev('.c-carousel_item');
       if (el.length) {
-        $('.c-carousel_item').removeClass('c-carousel_item-active')
-        el.addClass('c-carousel_item-active');
-
-        // This I should be able to dry up.
-        $(self.element).find('.c-carousel_full').html($($('#' + el.attr('id'))).find('.c-carousel_section').html());
-
+         this.activate(el, self);
       }
     },
 
