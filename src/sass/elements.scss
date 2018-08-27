@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');
 
+
+
 //TNT specific rules
 select:-moz-focusring {
   color: transparent;
@@ -62,7 +64,10 @@ p {
   margin: 0 0 30px;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: 'Noto Sans', sans-serif;
 }
 
@@ -94,9 +99,6 @@ h4 {
   line-height: 1.5;
 }
 
-
-
-
 .small {
   font-size: 14px;
   font-size: 0.875rem;
@@ -105,5 +107,5 @@ h4 {
 }
 
 strong {
-    font-family: 'Noto Sans', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
 }

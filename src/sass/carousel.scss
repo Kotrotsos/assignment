@@ -2,20 +2,18 @@
 
 .c-carousel {
 
-
   .c-carousel_full {
-    padding: $base-whitespace * 2;
-    background-color: white;
+    background-color: #fff;
     margin-bottom: $base-whitespace;
+    overflow: hidden;
+    padding-bottom: $base-whitespace;
   }
 
   .c-carousel_strip {
     width: 100%;
-    overflow-x: hidden;
-overflow-y: hidden;
-white-space: nowrap;
-
-
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
   }
 
   .c-carousel_item {
@@ -23,15 +21,17 @@ white-space: nowrap;
     width: 280px;
     margin: 0 $base-whitespace 0 0;
     padding: $base-whitespace * 2;
-    background-color: white;
+    background-color: #fff;
 
     &:active {
-      border: solid black 1px;
+      background-color: #e3e3e3;
     }
+
     &-active {
-      border: solid black 1px;
+      background-color: #e3e3e3;
     }
   }
+
   .c-carousel_item_thumbnail {
 
   }
@@ -43,6 +43,6 @@ white-space: nowrap;
   }
 
   .c-carousel_item_description {
-
+    margin-bottom: $base-whitespace;
   }
 }

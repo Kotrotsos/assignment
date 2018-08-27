@@ -1,12 +1,15 @@
 @import 'src/sass/normalize';
 
+// Variables and Utilities. High specificity
 @import 'src/sass/variables';
 @import 'src/sass/utilities';
 
+// Layout and elements
 @import 'src/sass/layout';
-
 @import 'src/sass/elements';
 
+// Objects
 @import 'src/sass/objects.buttons';
 
+// Components
 @import 'src/sass/carousel';
