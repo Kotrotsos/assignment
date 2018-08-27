@@ -1,7 +1,7 @@
 
 
 .c-carousel {
-
+  position: relative;
   &_full {
     background-color: #fff;
     margin-bottom: $base-whitespace;
@@ -33,6 +33,29 @@
     &_description {
       margin-bottom: $base-whitespace;
     }
+  }
+
+   &_nav {
+     padding: 10px;
+     font-weight: 700;
+      font-family: 'Noto Sans', sans-serif;
+     background-color: $orange;
+     color: #fff;
+     position: absolute;
+     bottom: $base-whitespace * 3;
+     text-decoration: none;
+
+     &:hover {
+      text-decoration: none;
+     }
+   
+   }
+  &_nav-forward {
+  right: 0;
+  }
+  &_nav-back {
+
+  left: 0;
   }
 
 

@@ -102,7 +102,7 @@
       */
       datasource = this.settings.datasource || $(self.element).attr('data-datasource');
 
-      /* Fetches JSON from webkit (Serverless Functions by AUTO0. https://webkit.com) */
+      /* Fetches JSON from webkit (Serverless Functions by AUTO0. */
       $.when($.ajax(datasource)).then(function (data, textStatus, jqXHR) {
         remoteData = data.testimonials;
         self.render(data.testimonials);
@@ -123,6 +123,14 @@
           if (event.originalEvent.code == 'ArrowLeft') {
             self.previous(self);
           }
+        });
+
+        $('.c-carousel_nav-forward').on('click tap', function () {
+          self.next(self);
+        });
+
+        $('.c-carousel_nav-back').on('click tap', function () {
+          self.previous(self);
         });
 
         // Select the first one of the carousel items.
